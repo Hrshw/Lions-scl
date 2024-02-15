@@ -18,7 +18,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://rahul:RSsmy11ssm@formbuilder.t0jplog.mongodb.net/lionsclub');
+mongoose.connect('mongodb+srv://rahul:RSsmy11ssm@formbuilder.t0jplog.mongodb.net/formbuilder');
 
 // Check if MongoDB is connected successfully
 const db = mongoose.connection;
@@ -57,7 +57,7 @@ app.post('/login', (req, res) => {
   if (username === 'exampleUser@gmail.com' && password === 'examplePassword') {
     const user = { username: 'exampleUser@gmail.com' };
 
-    const accessToken = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1m' });
+    const accessToken = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     // Set the token as a cookie
     res.cookie('accessToken', accessToken, { httpOnly: true });

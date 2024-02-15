@@ -111,7 +111,7 @@
    
 
     <!-- Event Form -->
-    <form id="eventForm" class="form-section mb-5">
+    <form id="eventForm" class="form-section mb-5 active-section">
         <div class="mb-3">
             <label for="eventTitle" class="form-label">Event Title</label>
             <input type="text" class="form-control" id="eventTitle" required>
@@ -132,8 +132,16 @@
     <!-- Carousel Form -->
     <form id="carouselForm" class="form-section mb-5">
         <div class="mb-3">
-            <label for="carouselImage" class="form-label">Carousel Image</label>
-            <input type="file" class="form-control" id="carouselImage" accept="image/*" required>
+            <label for="carouselImage1" class="form-label">Carousel Image 1</label>
+            <input type="file" class="form-control" id="carouselImage1" accept="image/*" required>
+        </div>
+        <div class="mb-3">
+            <label for="carouselImage2" class="form-label">Carousel Image 2</label>
+            <input type="file" class="form-control" id="carouselImage2" accept="image/*" required>
+        </div>
+        <div class="mb-3">
+            <label for="carouselImage3" class="form-label">Carousel Image 3</label>
+            <input type="file" class="form-control" id="carouselImage3" accept="image/*" required>
         </div>
         <button type="button" class="btn btn-primary" onclick="uploadCarouselImage()">Upload Carousel Image</button>
 
