@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .admin-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+            padding-left: 10px;
+            color: white;
+        }
+
+        .main {
+            flex: 1;
+            padding-left: 30px;
+            max-width: 800px;
+        }
+
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .carousel-image-container {
+            margin-top: 20px;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .active-section {
+            display: block;
+        }
+
+        @media (max-width: 767px) {
+            .sidenav {
+                width: 100%;
+                position: static;
+                padding-top: 0;
+                padding-left: 0;
+                text-align: center;
+            }
+
+            .main {
+                padding-left: 15px;
+            }
+
+            .admin-container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="sidenav">
+    <h5>Menu</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showForm('eventForm')">Event</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showForm('carouselForm')">Carousel</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showForm('projectForm')">Project</a>
+        </li>
+    </ul>
+</div>
+ <h2 class="text-center mb-4">Admin Page</h2>
+<div class="container admin-container main">
+   
+
+    <!-- Event Form -->
+    <form id="eventForm" class="form-section mb-5">
+        <div class="mb-3">
+            <label for="eventTitle" class="form-label">Event Title</label>
+            <input type="text" class="form-control" id="eventTitle" required>
+        </div>
+        <div class="mb-3">
+            <label for="eventDescription" class="form-label">Event Description</label>
+            <textarea class="form-control" id="eventDescription" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="eventImage" class="form-label">Event Image</label>
+            <input type="file" class="form-control" id="eventImage" accept="image/*" required>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="uploadEvent()">Upload Event</button>
+    </form>
+
+    <hr>
+
+    <!-- Carousel Form -->
+    <form id="carouselForm" class="form-section mb-5">
+        <div class="mb-3">
+            <label for="carouselImage" class="form-label">Carousel Image</label>
+            <input type="file" class="form-control" id="carouselImage" accept="image/*" required>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="uploadCarouselImage()">Upload Carousel Image</button>
+
+<!-- Carousel Image Preview Container -->
+    {{!-- <div class="carousel-image-container mt-4">
+        <h5>Carousel Images</h5>
+        <div id="carouselImagePreview" class="d-flex flex-wrap"></div>
+    </div> --}}
+
+    </form>
+
+    
+
+    <hr>
+
+    <!-- Project Form -->
+    <form id="projectForm" class="form-section mb-5">
+        <div class="mb-3">
+            <label for="projectTitle" class="form-label">Project Title</label>
+            <input type="text" class="form-control" id="projectTitle" required>
+        </div>
+        <div class="mb-3">
+            <label for="projectDescription" class="form-label">Project Description</label>
+            <textarea class="form-control" id="projectDescription" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="projectImage" class="form-label">Project Image</label>
+            <input type="file" class="form-control" id="projectImage" accept="image/*" required>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="uploadProject()">Upload Project</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script>
+    function showForm(formId) {
+        const forms = document.getElementsByClassName('form-section');
+        for (const form of forms) {
+            form.classList.remove('active-section');
+        }
+
+        const selectedForm = document.getElementById(formId);
+        selectedForm.classList.add('active-section');
+    }
+
+    function uploadEvent() {
+        alert('Event image uploaded successfully!');
+    }
+
+    function uploadCarouselImage() {
+        alert('Carousel image uploaded successfully!');
+        const carouselImageInput = document.getElementById('carouselImage');
+        const carouselImagePreview = document.getElementById('carouselImagePreview');
+
+        const imagePreview = document.createElement('img');
+        imagePreview.className = 'image-preview';
+        imagePreview.src = URL.createObjectURL(carouselImageInput.files[0]);
+
+        carouselImagePreview.appendChild(imagePreview);
+    }
+
+    function uploadProject() {
+        alert('Project image uploaded successfully!');
+    }
+</script>
+</body>
+</html>
