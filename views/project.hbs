@@ -27,6 +27,61 @@
     .card-text.full-description {
       display: none;
     }
+
+   .heads {
+  background-color: #211951;
+}
+
+.card-text.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  height: auto;
+}
+
+.card-text.full-description {
+  display: none;
+  overflow: visible;
+}
+
+.card.expanded .description {
+  -webkit-line-clamp: initial;
+}
+
+.card.expanded .full-description {
+  display: block;
+}
+
+.centered-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card.expanded {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: #ffc107;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.read-less {
+  display: none;
+}
+
+.card.expanded img {
+  width: 150px; /* Make sure the image takes 100% width in expanded state */
+  height: 192px; /* Maintain aspect ratio */
+}
+
   </style>
 </head>
 
@@ -66,13 +121,19 @@
     <div id="carouselExampleFade" class="carousel slide carousel-fade">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="/images/29485.jpg" class="d-block w-100" alt="..." height="400px">
+          <img src="/images/slider1.JPG" class="d-block w-100" alt="..." height="400px">
         </div>
         <div class="carousel-item">
-          <img img src="/images/29485.jpg" class="d-block w-100" alt="..." height="400px">
+          <img img src="/images/slider2.JPG" class="d-block w-100" alt="..." height="400px">
         </div>
         <div class="carousel-item">
-          <img img src="/images/29485.jpg" class="d-block w-100" alt="..." height="400px">
+          <img img src="/images/slider3.JPG" class="d-block w-100" alt="..." height="400px">
+        </div>
+        <div class="carousel-item">
+          <img img src="/images/slider4.JPG" class="d-block w-100" alt="..." height="400px">
+        </div>
+        <div class="carousel-item">
+          <img img src="/images/slider5.JPG" class="d-block w-100" alt="..." height="400px">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -98,10 +159,10 @@
             <div class="col">
               <div class="card shadow-sm">
                 <img src="/images/photo-1609607847926-da4702f01fef.avif" class="bd-placeholder-img card-img-top"
-                  width="100%" height="225" alt="Your Image Description">
+                  width="100" height="225" alt="Your Image Description">
                 <div class="card-body">
                   <p class="card-text">NAME OF THE PROJECT</p>
-                 <p class="card-text description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
+                  <p class="card-text description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
                     sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
                   <p class="card-text full-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
                     eos sapiente ea beatae unde error debitis tempore expedita recusandae provident Lorem ipsum dolor
@@ -109,6 +170,27 @@
                     expedita recusandae provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
                     sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
                   <a href="javascript:void(0);" class="read-more" onclick="toggleDescription(this)">Read More</a>
+                  <a href="javascript:void(0);" class="read-less" onclick="toggleDescriptionBack(this)">Read Less</a>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <img src="/images/photo-1609607847926-da4702f01fef.avif" class="bd-placeholder-img card-img-top"
+                  width="100%" height="225" alt="Your Image Description">
+                <div class="card-body">
+                  <p class="card-text">NAME OF THE PROJECT</p>
+                  <p class="card-text description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
+                    sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
+                  <p class="card-text full-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
+                    eos sapiente ea beatae unde error debitis tempore expedita recusandae provident Lorem ipsum dolor
+                    sit amet consectetur adipisicing elit. Numquam eos sapiente ea beatae unde error debitis tempore
+                    expedita recusandae provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
+                    sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
+                  <a href="javascript:void(0);" class="read-more" onclick="toggleDescription(this)">Read More</a>
+                  <a href="javascript:void(0);" class="read-less" onclick="toggleDescriptionBack(this)">Read Less</a>
                 </div>
               </div>
             </div>
@@ -126,23 +208,7 @@
                     expedita recusandae provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
                     sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
                   <a href="javascript:void(0);" class="read-more" onclick="toggleDescription(this)">Read More</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <img src="/images/photo-1609607847926-da4702f01fef.avif" class="bd-placeholder-img card-img-top"
-                  width="100%" height="225" alt="Your Image Description">
-                <div class="card-body">
-                  <p class="card-text">NAME OF THE PROJECT</p>
-                  <p class="card-text description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
-                    sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
-                  <p class="card-text full-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-                    eos sapiente ea beatae unde error debitis tempore expedita recusandae provident Lorem ipsum dolor
-                    sit amet consectetur adipisicing elit. Numquam eos sapiente ea beatae unde error debitis tempore
-                    expedita recusandae provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
-                    sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
-                  <a href="javascript:void(0);" class="read-more" onclick="toggleDescription(this)">Read More</a>
+                  <a href="javascript:void(0);" class="read-less" onclick="toggleDescriptionBack(this)">Read Less</a>
                 </div>
               </div>
             </div>
@@ -161,6 +227,7 @@
                     expedita recusandae provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
                     sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
                   <a href="javascript:void(0);" class="read-more" onclick="toggleDescription(this)">Read More</a>
+                  <a href="javascript:void(0);" class="read-less" onclick="toggleDescriptionBack(this)">Read Less</a>
                 </div>
               </div>
             </div>
@@ -178,6 +245,7 @@
                     expedita recusandae provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
                     sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
                   <a href="javascript:void(0);" class="read-more" onclick="toggleDescription(this)">Read More</a>
+                  <a href="javascript:void(0);" class="read-less" onclick="toggleDescriptionBack(this)">Read Less</a>
                 </div>
               </div>
             </div>
@@ -195,6 +263,7 @@
                     expedita recusandae provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
                     sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
                   <a href="javascript:void(0);" class="read-more" onclick="toggleDescription(this)">Read More</a>
+                  <a href="javascript:void(0);" class="read-less" onclick="toggleDescriptionBack(this)">Read Less</a>
                 </div>
               </div>
             </div>
@@ -213,6 +282,7 @@
                     expedita recusandae provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
                     sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
                   <a href="javascript:void(0);" class="read-more" onclick="toggleDescription(this)">Read More</a>
+                  <a href="javascript:void(0);" class="read-less" onclick="toggleDescriptionBack(this)">Read Less</a>
                 </div>
               </div>
             </div>
@@ -230,6 +300,7 @@
                     expedita recusandae provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
                     sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
                   <a href="javascript:void(0);" class="read-more" onclick="toggleDescription(this)">Read More</a>
+                  <a href="javascript:void(0);" class="read-less" onclick="toggleDescriptionBack(this)">Read Less</a>
                 </div>
               </div>
             </div>
@@ -247,6 +318,7 @@
                     expedita recusandae provident Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos
                     sapiente ea beatae unde error debitis tempore expedita recusandae provident.</p>
                   <a href="javascript:void(0);" class="read-more" onclick="toggleDescription(this)">Read More</a>
+                  <a href="javascript:void(0);" class="read-less" onclick="toggleDescriptionBack(this)">Read Less</a>
                 </div>
               </div>
             </div>
@@ -288,25 +360,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
- <script>
-        function toggleDescription(link) {
-            const cardBody = link.parentNode;
-            const description = cardBody.querySelector('.description');
-            const fullDescription = cardBody.querySelector('.full-description');
+  <script src="/js/script.js"></script>
+  
 
-            if (description.classList.contains('expanded')) {
-                // Show only three lines
-                description.classList.remove('expanded');
-                fullDescription.style.display = 'none';
-                link.innerText = 'Read More';
-            } else {
-                // Show full description
-                description.classList.add('expanded');
-                fullDescription.style.display = 'block';
-                link.innerText = 'Read Less';
-            }
-        }
-    </script>
+
+
 </body>
 
 </html>
