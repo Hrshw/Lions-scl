@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const hbs = require('hbs');
 const path = require('path')
 const jwt = require('jsonwebtoken')
@@ -17,15 +17,15 @@ app.set('view engine', 'hbs');
 // Set the path for views
 app.set('views', path.join(__dirname, 'views'));
 
-// Connect to MongoDB
-mongoose.connect('mongodb+srv://rahul:RSsmy11ssm@formbuilder.t0jplog.mongodb.net/formbuilder');
+// // Connect to MongoDB
+// mongoose.connect('mongodb+srv://rahul:RSsmy11ssm@formbuilder.t0jplog.mongodb.net/formbuilder');
 
-// Check if MongoDB is connected successfully
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('MongoDB connected successfully!');
-});
+// // Check if MongoDB is connected successfully
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// db.once('open', () => {
+//   console.log('MongoDB connected successfully!');
+// });
 
 
 app.get('/', (req, res) => {
