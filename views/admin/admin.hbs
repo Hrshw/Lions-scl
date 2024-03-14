@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -91,121 +98,126 @@
         }
     </style>
 </head>
+
 <body>
-<div class="sidenav">
-    <h5>Menu</h5>
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showForm('eventForm')">Event</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showForm('carouselForm')">Carousel</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showForm('projectForm')">Project</a>
-        </li>
-    </ul>
-</div>
- <h2 class="text-center mb-4">Admin Page</h2>
-<div class="container admin-container main">
-   
+    <div class="sidenav">
+        <h5>Menu</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showForm('eventForm')">Event</a>
+            </li>
+            {{!-- <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showForm('carouselForm')">Carousel</a>
+            </li> --}}
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showForm('projectForm')">Project</a>
+            </li>
+        </ul>
+    </div>
+    <h2 class="text-center mb-4">Admin Page</h2>
+    <div class="container admin-container main">
 
-    <!-- Event Form -->
-    <form id="eventForm" class="form-section mb-5 active-section">
-        <div class="mb-3">
-            <label for="eventTitle" class="form-label">Event Title</label>
-            <input type="text" class="form-control" id="eventTitle" required>
-        </div>
-        <div class="mb-3">
-            <label for="eventDescription" class="form-label">Event Description</label>
-            <textarea class="form-control" id="eventDescription" rows="3" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="eventImage" class="form-label">Event Image</label>
-            <input type="file" class="form-control" id="eventImage" accept="image/*" required>
-        </div>
-        <button type="button" class="btn btn-primary" onclick="uploadEvent()">Upload Event</button>
-    </form>
 
-    <hr>
+        <!-- Event Form -->
+        <form id="eventForm" class="form-section mb-5 active-section">
+            <div class="mb-3">
+                <label for="eventTitle" class="form-label">Name of activity</label>
+                <input type="text" class="form-control" id="eventTitle" required>
+            </div>
+            <div class="mb-3">
+                <label for="eventDescription" class="form-label">Conducted on</label>
+                <input type="text" class="form-control" id="conductedOn" rows="3" required>
+            </div>
+            <div class="mb-3">
+                <label for="eventDescription" class="form-label">Conducted at</label>
+                <input type="text" class="form-control" id="ConductedAt" rows="3" required>
+            </div>
+            <div class="mb-3">
+                <label for="eventDescription" class="form-label">Total Cost</label>
+                <input type="number" class="form-control" id="totalCost" rows="3" required>
+            </div>
+            <div class="mb-3">
+                <label for="eventDescription" class="form-label">Total Beneficiaries</label>
+                <input type="number" class="form-control" id="totalBeneficiaries" rows="3" required>
+            </div>
+            <div class="mb-3">
+                <label for="eventImage" class="form-label">Event Image</label>
+                <input type="file" class="form-control" id="eventImage1" accept="image" required>
+                <input type="file" class="form-control" id="eventImage2" accept="image">
+                <input type="file" class="form-control" id="eventImage3" accept="image">
+                <input type="file" class="form-control" id="eventImage4" accept="image">
+                <input type="file" class="form-control" id="eventImage5" accept="image">
 
-    <!-- Carousel Form -->
-    <form id="carouselForm" class="form-section mb-5">
-        <div class="mb-3">
-            <label for="carouselImage1" class="form-label">Carousel Image 1</label>
-            <input type="file" class="form-control" id="carouselImage1" accept="image/*" required>
-        </div>
-        <div class="mb-3">
-            <label for="carouselImage2" class="form-label">Carousel Image 2</label>
-            <input type="file" class="form-control" id="carouselImage2" accept="image/*" required>
-        </div>
-        <div class="mb-3">
-            <label for="carouselImage3" class="form-label">Carousel Image 3</label>
-            <input type="file" class="form-control" id="carouselImage3" accept="image/*" required>
-        </div>
-        <button type="button" class="btn btn-primary" onclick="uploadCarouselImage()">Upload Carousel Image</button>
+            </div>
 
-<!-- Carousel Image Preview Container -->
-    {{!-- <div class="carousel-image-container mt-4">
-        <h5>Carousel Images</h5>
-        <div id="carouselImagePreview" class="d-flex flex-wrap"></div>
-    </div> --}}
+            <button type="button" class="btn btn-primary" onclick="uploadEvent()">Upload Event</button>
+        </form>
 
-    </form>
+        <hr>
 
-    
+        <!-- Carousel Form -->
+        {{!-- <form id="carouselForm" class="form-section mb-5">
+            <div class="mb-3">
+                <label for="carouselImage1" class="form-label">Carousel Image 1</label>
+                <input type="file" class="form-control" id="carouselImage1" accept="image/*" required>
+                <small class="text-muted">Select an image file (JPEG, PNG, GIF, or SVG) with a maximum size of
+                    200KB.</small>
+            </div>
+            <div class="mb-3">
+                <label for="carouselImage2" class="form-label">Carousel Image 2</label>
+                <input type="file" class="form-control" id="carouselImage2" accept="image/*" required>
+                <small class="text-muted">Select an image file (JPEG, PNG, GIF, or SVG) with a maximum size of
+                    200KB.</small>
+            </div>
+            <div class="mb-3">
+                <label for="carouselImage3" class="form-label">Carousel Image 3</label>
+                <input type="file" class="form-control" id="carouselImage3" accept="image/*" required>
+                <small class="text-muted">Select an image file (JPEG, PNG, GIF, or SVG) with a maximum size of
+                    200KB.</small>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="uploadCarouselImage()">Upload Carousel Image</button>
+        </form> --}}
 
-    <hr>
+        <hr>
 
-    <!-- Project Form -->
-    <form id="projectForm" class="form-section mb-5">
-        <div class="mb-3">
-            <label for="projectTitle" class="form-label">Project Title</label>
-            <input type="text" class="form-control" id="projectTitle" required>
-        </div>
-        <div class="mb-3">
-            <label for="projectDescription" class="form-label">Project Description</label>
-            <textarea class="form-control" id="projectDescription" rows="3" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="projectImage" class="form-label">Project Image</label>
-            <input type="file" class="form-control" id="projectImage" accept="image/*" required>
-        </div>
-        <button type="button" class="btn btn-primary" onclick="uploadProject()">Upload Project</button>
-    </form>
-</div>
+        <!-- Project Form -->
+        <form id="projectForm" class="form-section mb-5">
+            <div class="mb-3">
+                <label for="projectTitle" class="form-label">Project Title</label>
+                <input type="text" class="form-control" id="projectTitle" required>
+            </div>
+            <div class="mb-3">
+                <label for="projectDescription" class="form-label">Project Description</label>
+                <textarea class="form-control" id="projectDescription" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="projectImage" class="form-label">Project Image</label>
+                <input type="file" class="form-control" id="projectImage" accept="image/*" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="uploadProject()">Upload Project</button>
+        </form>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script>
-    function showForm(formId) {
-        const forms = document.getElementsByClassName('form-section');
-        for (const form of forms) {
-            form.classList.remove('active-section');
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
+
+    <script>
+        function showForm(formId) {
+            const forms = document.getElementsByClassName('form-section');
+            for (const form of forms) {
+                form.classList.remove('active-section');
+            }
+
+            const selectedForm = document.getElementById(formId);
+            selectedForm.classList.add('active-section');
         }
-
-        const selectedForm = document.getElementById(formId);
-        selectedForm.classList.add('active-section');
-    }
-
-    function uploadEvent() {
-        alert('Event image uploaded successfully!');
-    }
-
-    function uploadCarouselImage() {
-        alert('Carousel image uploaded successfully!');
-        const carouselImageInput = document.getElementById('carouselImage');
-        const carouselImagePreview = document.getElementById('carouselImagePreview');
-
-        const imagePreview = document.createElement('img');
-        imagePreview.className = 'image-preview';
-        imagePreview.src = URL.createObjectURL(carouselImageInput.files[0]);
-
-        carouselImagePreview.appendChild(imagePreview);
-    }
-
-    function uploadProject() {
-        alert('Project image uploaded successfully!');
-    }
-</script>
+    </script>
 </body>
+
 </html>

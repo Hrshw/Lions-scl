@@ -8,9 +8,24 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
   <style>
     .heads {
       background-color: #211951;
+    }
+
+    /* Apply blur effect to the background */
+    .blur-background {
+      filter: blur(4px);
+    }
+
+    .withimg {
+      width: -webkit-fill-available;
+      height: 190px;
     }
   </style>
 </head>
@@ -18,7 +33,9 @@
 <body class=" bg-warning">
   <div class="p-3 mb-2 heads text-white d-flex justify-content-around">
     <img src="/images/logo.png" alt="" width="100px" height="100px">
-    <p class=" fs-1 text-center mt-3">Lions club of Ahmedabad Greater</p>
+    <p class=" fs-1 text-center mt-3 fw-bold">Lions club of Ahmedabad Greater</p>
+    <div class=" text-center mt-3">
+    </div>
   </div>
   <nav class="navbar navbar-expand-lg bg-warning">
     <div class="container-fluid">
@@ -50,10 +67,22 @@
   <section>
     <div id="carouselExampleFade" class="carousel slide carousel-fade">
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="/images/slider1.JPG" class="d-block w-100" alt="..." height="400px">
-        </div>
-      </div>
+    <div class="carousel-item active">
+      <img src="/images/slider1.jpg" class="d-block w-100" alt="..." height="400px">
+    </div>
+   <div class="carousel-item">
+      <img src="/images/slider2.jpg" class="d-block w-100" alt="..." height="400px">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/slider3.jpg" class="d-block w-100" alt="..." height="400px">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/slider4.jpg" class="d-block w-100" alt="..." height="400px">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/slider5.jpg" class="d-block w-100" alt="..." height="400px">
+    </div>
+  </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -74,40 +103,27 @@
         <div class="presidents mt-5">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-4 ">
 
-            <div class="col">
-              <div class="card shadow-sm">
-                <!-- Bootstrap Carousel -->
-                <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
-                  <div class="carousel-inner">
-                    <!-- First image -->
-                    <div class="carousel-item active">
-                      <img src="/images/photo-1609607847926-da4702f01fef.avif" class="d-block"
-                        alt="Your Image Description" width="200px" height="198px">
-                    </div>
-                  </div>
-                  <!-- Navigation buttons -->
-                  <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
-                <div class="card-body">
-                  <p class="card-text">NAME OF activity: <span>Hello</span></p>
-                  <p class="card-text">Conducted on: <span>Hello</span></p>
-                  <p class="card-text">Conducted at: <span>Hello</span></p>
-                  <p class="card-text">Total Cost: <span>Hello</span></p>
-                  <p class="card-text">Total Beneficiaries: <span>Hello</span></p>
-                  <!-- View Images button -->
-                  <button class="btn btn-primary view-images-btn" onclick="toggleCarousel()">View Images</button>
-                </div>
-              </div>
-            </div>
+            <!-- Loop through each event and display its details -->
+{{#each events}}
+<div class="col">
+    <div class="card shadow-sm">
+        <!-- Bootstrap Carousel -->
+        <div class="card-body">
+            <!-- Display event image -->
+            <img src="/uploads/{{this.images.[0]}}" alt="" class="withimg">
+            <!-- Display event details -->
+            <p class="card-text fw-bold">Name of activity : <span class="fw-normal"> {{this.eventTitle}}</span></p>
+            <p class="card-text fw-bold">Conducted on : <span class="fw-normal"> {{this.conductedOn}}</span></p>
+            <p class="card-text fw-bold">Conducted at : <span class="fw-normal"> {{this.conductedAt}}</span></p>
+            <p class="card-text fw-bold">Total Cost : <span class="fw-normal"> {{this.totalCost}}</span></p>
+            <p class="card-text fw-bold">Total Beneficiaries : <span class="fw-normal"> {{this.totalBeneficiaries}}</span></p>
+            <!-- View Images button -->
+            <button class="btn btn-primary view-images-btn" onclick="openModal('{{this.images}}')">View Images</button>
+        </div>
+    </div>
+</div>
+{{/each}}
+
 
           </div>
         </div>
@@ -144,21 +160,59 @@
           </svg></a></li>
     </ul>
   </footer>
+
+  <!-- Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="imageModalLabel">Event Images</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Bootstrap Carousel -->
+          <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <!-- Images will be dynamically added here -->
+            </div>
+            <!-- Navigation buttons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <script>
-    function toggleCarousel() {
+    function openModal() {
+      // Open the modal
+      var modal = new bootstrap.Modal(document.getElementById('imageModal'), {
+        backdrop: 'static',
+        keyboard: false
+      });
+      modal.show();
+
       // Add additional images to the carousel
-      var carousel = new bootstrap.Carousel(document.getElementById('imageCarousel'));
       var carouselInner = document.querySelector("#imageCarousel .carousel-inner");
 
       // Additional images
-      var imagePaths = [
-        "/images/photo-1609607847926-da4702f01fef.avif",
-        "/images/photo-1609607847926-da4702f01fef.avif",
-        "/images/photo-1609607847926-da4702f01fef.avif"
-      ];
+     var imagePaths = [];
+
+      {{#each events}}
+      {{#each this.images}}
+         imagePaths.push("/uploads/{{this}}");
+      {{/each}}
+      {{/each}}
 
       imagePaths.forEach(function (path, index) {
         var carouselItem = document.createElement("div");
@@ -169,9 +223,8 @@
 
         var image = document.createElement("img");
         image.src = path;
-        image.classList.add("d-block");
-        image.width = "200";
-        image.height = "198";
+        image.classList.add("d-block", "mx-auto");
+        image.style.maxHeight = "70vh"; // Adjust the max height as per your requirement
 
         carouselItem.appendChild(image);
         carouselInner.appendChild(carouselItem);
