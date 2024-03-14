@@ -30,7 +30,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://club:club%407834@cluster0.rrwjqys.mongodb.net/club');
+mongoose.connect(process.env.DBSTRING);
 
 // Check if MongoDB is connected successfully
 const db = mongoose.connection;
