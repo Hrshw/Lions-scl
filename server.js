@@ -81,8 +81,8 @@ app.post('/login', (req, res) => {
   console.log('Received credentials:', username, password);
 
   // Dummy authentication logic (replace with your actual authentication logic)
-  if (username === 'User@gmail.com' && password === 'example') {
-    const user = { username: 'User@gmail.com' };
+  if (username === 'Adminlcg' && password === 'Admin@234') {
+    const user = { username: 'Adminlcg' };
 
     const accessToken = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1h' });
 
