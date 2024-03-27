@@ -39,26 +39,10 @@ db.once('open', () => {
   console.log('MongoDB connected successfully!');
 });
 
-// Fetch carousel images from MongoDB
-const fetchCarouselImages = async () => {
-  try {
-      const carouselImages = await CarouselImage.find();
-      return carouselImages.map(image => image.filename);
-  } catch (error) {
-      console.error('Error fetching carousel images:', error);
-      return [];
-  }
-};
 
-// Middleware to fetch carousel images and pass them to res.locals
-app.use(async (req, res, next) => {
-  const carouselImages = await fetchCarouselImages();
-  res.locals.carouselImages = carouselImages;
-  next();
-});
 
 app.get('/', (req, res) => {
-  res.render('home', { carouselImages: res.locals.carouselImages });
+  res.render('home');
 });
 app.get('/team', (req, res) => {
   res.render('team'); 
@@ -168,35 +152,35 @@ app.get('/events', async (req, res) => {
 });
 
 // POST endpoint to handle carousel image uploads
-app.post('/uploadCarouselImage', upload.array('carouselImage', 5), async (req, res) => {
-  try {
-      // Process each uploaded file
-      for (const file of req.files) {
-          // Check if the file size exceeds 200 KB
-          if (file.size > 200000) {
-              return res.status(400).json({ error: 'File size exceeds the limit of 200 KB.' });
-          }
+// app.post('/uploadCarouselImage', upload.array('carouselImage', 5), async (req, res) => {
+//   try {
+//       // Process each uploaded file
+//       for (const file of req.files) {
+//           // Check if the file size exceeds 200 KB
+//           if (file.size > 200000) {
+//               return res.status(400).json({ error: 'File size exceeds the limit of 200 KB.' });
+//           }
 
-          // Resize image using sharp
-          const resizedImageBuffer = await sharp(file.buffer)
-              .resize({ width: 800, height: 600, fit: 'inside' }) // Resize image to fit within 800x600 dimensions
-              .toBuffer();
+//           // Resize image using sharp
+//           const resizedImageBuffer = await sharp(file.buffer)
+//               .resize({ width: 800, height: 600, fit: 'inside' }) // Resize image to fit within 800x600 dimensions
+//               .toBuffer();
 
-          // Generate unique filename
-          const filename = `${Date.now()}-${file.originalname}`;
-          const imagePath = path.join(__dirname, 'public', 'uploads', 'carouselimages', filename);
+//           // Generate unique filename
+//           const filename = `${Date.now()}-${file.originalname}`;
+//           const imagePath = path.join(__dirname, 'public', 'uploads', 'carouselimages', filename);
 
-          // Write resized image to disk
-          await fs.promises.writeFile(imagePath, resizedImageBuffer);
-      }
+//           // Write resized image to disk
+//           await fs.promises.writeFile(imagePath, resizedImageBuffer);
+//       }
 
-      // Send success response
-      res.status(200).json({ message: 'Carousel images uploaded successfully' });
-  } catch (error) {
-      console.error('Error uploading carousel images:', error);
-      res.status(500).json({ error: 'Internal server error' });
-  }
-});
+//       // Send success response
+//       res.status(200).json({ message: 'Carousel images uploaded successfully' });
+//   } catch (error) {
+//       console.error('Error uploading carousel images:', error);
+//       res.status(500).json({ error: 'Internal server error' });
+//   }
+// });
 
 
 app.listen(PORT, () => {
